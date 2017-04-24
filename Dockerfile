@@ -6,9 +6,8 @@ RUN apt-get update && \
 	libboost-all-dev libsdl2-dev swig wget vim htop
 
 RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
-	wget --quiet https://repo.continuum.io/miniconda/Miniconda2-4.3.11-Linux-x86_64.sh -O ~/miniconda.sh && \
-	/bin/bash ~/miniconda.sh -b -p /opt/conda && \
-	rm ~/miniconda.sh && \
+    wget --quiet https://repo.continuum.io/miniconda/Miniconda2-4.3.11-Linux-x86_64.sh -O ~/miniconda.sh && \
+    /bin/bash ~/miniconda.sh -b -p /opt/conda && rm ~/miniconda.sh && \
     /opt/conda/bin/pip install 'gym[all]' && \
     /opt/conda/bin/conda install -y jupyter pandas matplotlib opencv
 
