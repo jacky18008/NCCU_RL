@@ -8,11 +8,12 @@ RUN apt-get update && \
 RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
 	wget --quiet https://repo.continuum.io/miniconda/Miniconda2-4.3.11-Linux-x86_64.sh -O ~/miniconda.sh && \
 	/bin/bash ~/miniconda.sh -b -p /opt/conda && \
-	rm ~/miniconda.sh
+	rm ~/miniconda.sh && \
+    /opt/conda/bin/pip install 'gym[all]' && \
+    /opt/conda/bin/conda install -y jupyter pandas matplotlib opencv
 
-RUN /opt/conda/bin/pip install 'gym[all]' keras && \
-	/opt/conda/bin/pip install --ignore-installed --upgrade https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-1.0.1-cp27-none-linux_x86_64.whl && \
-	/opt/conda/bin/conda install -y jupyter pandas matplotlib
+RUN /opt/conda/bin/pip install keras==2.0.3 && \
+    /opt/conda/bin/pip install --ignore-installed --upgrade https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-1.0.1-cp27-none-linux_x86_64.whl 
 
 ENV PATH /opt/conda/bin:$PATH
 
